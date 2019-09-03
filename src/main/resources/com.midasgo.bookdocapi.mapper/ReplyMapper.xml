@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.midasgo.bookdocapi.mapper.ReplyMapper">
+
+	<select id="selectAll" resultType="com.midasgo.bookdocapi.model.Reply" parameterType = "Int">
+        select * from bookdoc_note_reply
+        where note_id = #{note_id} 
+        order by id desc
+        limit #{pageIndex}, #{pageSize};
+    </select>
+       
+    <select id="selectItem" resultType="com.midasgo.bookdocapi.model.Reply" parameterType = "Int">
+        select * from bookdoc_note_reply where id = #{id};
+    </select>
+
+    <insert id="insertItem" parameterType="com.midasgo.bookdocapi.model.Reply">
+    		insert into bookdoc_note_reply values (0, #{content}, #{note_id}, now());
+    </insert>
+    
+    <update id="updateItem" parameterType="com.midasgo.bookdocapi.model.Reply">
+    		update bookdoc_note_reply 
+    		set content = #{content}, reg_date = now() 
+    		where id = #{id};
+    </update>
+     
+     <delete id="deleteItem" parameterType="Int">
+    		delete from bookdoc_note_reply where id = #{id}
+    </delete>
+</mapper>
