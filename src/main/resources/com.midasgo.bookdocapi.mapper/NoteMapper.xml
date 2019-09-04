@@ -12,12 +12,16 @@
     </select>
 
     <insert id="insertItem" parameterType="com.midasgo.bookdocapi.model.Note">
-    		insert into bookdoc_note values (0, #{content}, #{book_id}, #{image}, now());
+    		insert into bookdoc_note values (0, #{book_name}, #{title}, #{content}, #{image}, now());
     </insert>
     
     <update id="updateItem" parameterType="com.midasgo.bookdocapi.model.Note">
     		update bookdoc_note 
-    		set content = #{content}, image = #{image}, reg_date = now() 
+    		set book_name = #{book_name}, 
+    		title = #{title}, 
+    		content = #{content}, 
+    		image = #{image}, 
+    		reg_date = now() 
     		where id = #{id};
     </update>
      

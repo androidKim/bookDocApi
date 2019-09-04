@@ -1,5 +1,7 @@
 package com.midasgo.bookdocapi.controller.api;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,9 +23,13 @@ public class NoteController
 	//select all
 	@RequestMapping(value = "/note", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
-    public List<Note> selectAll() {
+    public HashMap  selectAll() {
 		List<Note> list = mapper.selectAll();
-        return list;
+		HashMap map = new HashMap<>();
+		map.put("list", list);
+		map.put("code", 0);
+		map.put("message", "success");
+        return map;
     }
 	
 	//select item
@@ -37,8 +43,12 @@ public class NoteController
 	//insert
     @RequestMapping(value = "/note", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public void insertItem(@RequestBody Note param) {
+    public HashMap insertItem(@RequestBody Note param) {
     	mapper.insertItem(param);
+    	HashMap map = new HashMap<>();
+		map.put("code", 0);
+		map.put("message", "success");
+        return map;
     }
     
     //update

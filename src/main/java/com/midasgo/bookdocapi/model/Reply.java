@@ -5,7 +5,7 @@ public class Reply {
 	private int id;
 	private String content;
 	private int note_id;
-	private long reg_date;
+	private String reg_date;
 	
 	public Reply() {
 		
@@ -42,18 +42,18 @@ public class Reply {
 		this.note_id = note_id;
 	}
 	
-	public long getReg_date() {
+	public String getReg_date() {
 		return reg_date;
 	}
 
-	public void setReg_date(long reg_date) {
+	public void setReg_date(String reg_date) {
 		this.reg_date = reg_date;
 	}
 
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "Reply [id=" + id + ", content=" + content + "note_id=" + note_id+"]";
+		return super.toString();
 	}
 	
 }
