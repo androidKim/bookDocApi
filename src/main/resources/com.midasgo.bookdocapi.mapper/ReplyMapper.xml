@@ -4,10 +4,7 @@
 <mapper namespace="com.midasgo.bookdocapi.mapper.ReplyMapper">
 
 	<select id="selectAll" resultType="com.midasgo.bookdocapi.model.Reply" parameterType = "Int">
-        select * from bookdoc_note_reply
-        where note_id = #{note_id} 
-        order by id desc
-        limit #{pageIndex}, #{pageSize};
+        select * from bookdoc_note_reply where note_id = #{note_id};
     </select>
        
     <select id="selectItem" resultType="com.midasgo.bookdocapi.model.Reply" parameterType = "Int">
@@ -27,4 +24,8 @@
      <delete id="deleteItem" parameterType="Int">
     		delete from bookdoc_note_reply where id = #{id}
     </delete>
+    
+    <select id="selectCount" resultType="Int" parameterType = "Int">
+    		select count(*) from bookdoc_note_reply where note_id = #{note_id};
+    </select>
 </mapper>

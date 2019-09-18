@@ -35,9 +35,13 @@ public class NoteController
 	//select item
 	@RequestMapping(value = "/note/{id}", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
-    public Note selectItem(@PathVariable("id") int id) {
+    public HashMap selectItem(@PathVariable("id") int id) {
 		Note item = mapper.selectItem(id);
-        return item;
+		HashMap map = new HashMap<>();
+		map.put("note", item);
+		map.put("code", 0);
+		map.put("message", "success");
+        return map;
     }
 	
 	//insert
@@ -47,7 +51,7 @@ public class NoteController
     	mapper.insertItem(param);
     	HashMap map = new HashMap<>();
 		map.put("code", 0);
-		map.put("message", "success");
+		map.put("message","success");
         return map;
     }
     

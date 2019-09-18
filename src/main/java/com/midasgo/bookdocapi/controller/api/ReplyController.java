@@ -1,5 +1,6 @@
 
 package com.midasgo.bookdocapi.controller.api;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -20,18 +21,19 @@ public class ReplyController
 	ReplyMapper mapper;
 	
 	//select all
-	@RequestMapping(value = "/reply/{note_id}/pageIndex={pageIndex}&pageSize={pageSize}", method = RequestMethod.GET)
+	@RequestMapping(value = "/reply/list/{note_id}", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
-    public List<Reply> selectAll(
-    		@PathVariable("note_id") int note_id,
-    		@PathVariable("pageIndex") int pageIndex,
-    		@PathVariable("pageSize") int pageSize) {
-		List<Reply> list = mapper.selectAll(note_id, pageSize, pageIndex);
-        return list;
+    public HashMap selectAll(@PathVariable("note_id") int note_id) {
+		List<Reply> list = mapper.selectAll(note_id);
+		HashMap map = new HashMap<>();
+		map.put("list", list);
+		map.put("code", 0);
+		map.put("message", "success");
+        return map;
     }
 	
 	//select item
-	@RequestMapping(value = "/reply/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/reply/item/{id}", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     public Reply selectItem(@PathVariable("id") int id) {
 		Reply item = mapper.selectItem(id);
@@ -41,8 +43,12 @@ public class ReplyController
 	//insert
     @RequestMapping(value = "/reply", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public void insertItem(@RequestBody Reply param) {
+    public HashMap insertItem(@RequestBody Reply param) {
     	mapper.insertItem(param);
+    	HashMap map = new HashMap<>();
+		map.put("code", 0);
+		map.put("message", "success");
+		return map;
     }
     
     //update
@@ -50,6 +56,7 @@ public class ReplyController
     @ResponseStatus(value = HttpStatus.OK)
     public void updateItem( @RequestBody Reply param) {
     	mapper.updateItem(param);
+    	
     }
     
     //delete
@@ -57,5 +64,17 @@ public class ReplyController
     @ResponseStatus(value = HttpStatus.OK)
     public void deleteItem(@PathVariable("id") int id) {
     	mapper.deleteItem(id);
+    }
+    
+    //count
+    @RequestMapping(value = "/reply/count/{note_id}", method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
+    public HashMap selectCount(@PathVariable("note_id") int note_id) {
+		int count = mapper.selectCount(note_id);
+		HashMap map = new HashMap<>();
+		map.put("count", count);
+		map.put("code", 0);
+		map.put("message", "success");
+        return map;
     }
 }

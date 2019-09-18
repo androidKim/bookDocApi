@@ -10,9 +10,10 @@ import com.midasgo.bookdocapi.model.Reply;
 @Mapper
 public interface ReplyMapper 
 {
-	public List<Reply> selectAll(int note_id, int pageSize, int pageIndex);
+	public List<Reply> selectAll(int note_id);
 	public Reply selectItem(int id);
 	public void insertItem(Reply item);
 	public void updateItem(Reply item);
 	public void deleteItem(int id);
+	public int selectCount(int note_id);
 }
