@@ -6,7 +6,7 @@
 	<groupId>com.midasgo</groupId>
 	<artifactId>bookDocApi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>bookDocApi</name>
 	<description>bookDoc Application Server Procject</description>
